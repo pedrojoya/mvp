@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ef46cd43f340d7940863eef35a116306b2c20742">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_03413f95a4f045be8cfac1b8a77654433f02a8f7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\cd6f1fd98d472517fed0abbf9909ca6808eda0a8\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8027189320ea7401edf0c9ffc163694211e40cb8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\2dfaa12dbce82b56446af8c378990d04a987daac\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_43409c5f1699abe8f6876c74d7f4f6d1c424b0c9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_459f95221e79812df87e35b769b8529ccc5c962d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\317a42d63645869171c05fd0f33cc11a402e49d5\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_de2052c7ac438a0b566482b1b7f179ab3d8a960a\classes.dex" />
+    </item>
+
+</items>

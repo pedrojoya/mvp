@@ -1,0 +1,4 @@
+#Wed Apr 05 21:53:31 CEST 2017
+base.0=/Users/pedro/studio/PR002-Saludar/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3
+renamed.0=classes.dex
+file.0=/Users/pedro/studio/PR002-Saludar/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex

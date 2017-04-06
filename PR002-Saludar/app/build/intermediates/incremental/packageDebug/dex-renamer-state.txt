@@ -1,0 +1,7 @@
+#Wed Apr 05 21:55:22 CEST 2017
+base.0=/Users/pedro/studio/PR002-Saludar/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_6845de440ddbfdb957ed8b79e9484c9b9aae4f5d
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/Users/pedro/studio/PR002-Saludar/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_796fdc9ec043b7c35298ad32d6b18e610f4e63d7/classes.dex
+base.1=/Users/pedro/studio/PR002-Saludar/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_796fdc9ec043b7c35298ad32d6b18e610f4e63d7
+file.0=/Users/pedro/studio/PR002-Saludar/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_6845de440ddbfdb957ed8b79e9484c9b9aae4f5d/classes.dex

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    }
+]

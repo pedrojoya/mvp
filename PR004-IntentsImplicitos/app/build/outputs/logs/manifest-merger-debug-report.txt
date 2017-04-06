@@ -1,0 +1,111 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:2:1-28:12
+	package
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:4:11-52
+		INJECTED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:3:11-57
+	xmlns:android
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.CALL_PHONE
+ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:6:5-68
+	android:name
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:6:22-66
+uses-permission#android.permission.INTERNET
+ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:7:5-66
+	android:name
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:7:22-64
+uses-permission#android.permission.CAMERA
+ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:8:5-64
+	android:name
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:8:22-62
+uses-permission#android.permission.READ_CONTACTS
+ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:9:5-71
+	android:name
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:9:22-69
+application
+ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:11:5-26:19
+MERGED from [com.android.support:design:25.3.1] /Users/pedro/.android/build-cache/c2c0ebd1f01074dbe5a8756ef0807ba3dd403707/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/pedro/.android/build-cache/dfdfe315f0c58a4d7c33ce121a07dfdf56541d62/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/pedro/.android/build-cache/649e0c0236d1c2b5bc3c3003c2a57467f623c862/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] /Users/pedro/.android/build-cache/a2e83e02ef1e9606b06dd994023ff216fd485c69/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /Users/pedro/.android/build-cache/20143df1197d0a0d5d16e2c767a1537266c0db24/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/pedro/.android/build-cache/ef2c7ed09d3a79237cf1a68f750cedbe3db5e6a4/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/pedro/.android/build-cache/99e64f392d9f98db3c35bb2f448261a0bda0cd17/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/pedro/.android/build-cache/84aefc018727e9b5f931715c2b195ed288b92b4b/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/pedro/.android/build-cache/ec1e251a84d784ac5a1708f8c2d50f5cac206aa3/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /Users/pedro/.android/build-cache/f57bc11baccc85ada50d2f34128f40924f493e95/output/AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:14:9-41
+	tools:ignore
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:16:9-60
+	android:allowBackup
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:12:9-35
+	android:icon
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:13:9-43
+	android:theme
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:15:9-40
+activity#es.iessaladillo.pedrojoya.PR004.MainActivity
+ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:17:9-25:20
+	android:label
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:19:13-45
+	android:name
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:18:13-41
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:20:13-24:29
+action#android.intent.action.MAIN
+ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:21:17-68
+	android:name
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:21:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:23:17-76
+	android:name
+		ADDED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml:23:27-74
+uses-sdk
+INJECTED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:design:25.3.1] /Users/pedro/.android/build-cache/c2c0ebd1f01074dbe5a8756ef0807ba3dd403707/output/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/pedro/.android/build-cache/dfdfe315f0c58a4d7c33ce121a07dfdf56541d62/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/pedro/.android/build-cache/649e0c0236d1c2b5bc3c3003c2a57467f623c862/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /Users/pedro/.android/build-cache/610ac38670cfc15422e5963de173bb60ff510ff3/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.3.1] /Users/pedro/.android/build-cache/a2e83e02ef1e9606b06dd994023ff216fd485c69/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.3.1] /Users/pedro/.android/build-cache/20143df1197d0a0d5d16e2c767a1537266c0db24/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/pedro/.android/build-cache/ef2c7ed09d3a79237cf1a68f750cedbe3db5e6a4/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/pedro/.android/build-cache/99e64f392d9f98db3c35bb2f448261a0bda0cd17/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/pedro/.android/build-cache/84aefc018727e9b5f931715c2b195ed288b92b4b/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/pedro/.android/build-cache/ec1e251a84d784ac5a1708f8c2d50f5cac206aa3/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] /Users/pedro/.android/build-cache/f57bc11baccc85ada50d2f34128f40924f493e95/output/AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.3.1] /Users/pedro/.android/build-cache/c2c0ebd1f01074dbe5a8756ef0807ba3dd403707/output/AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/studio/PR004-IntentsImplicitos/app/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:25.3.1] /Users/pedro/.android/build-cache/c2c0ebd1f01074dbe5a8756ef0807ba3dd403707/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/pedro/.android/build-cache/dfdfe315f0c58a4d7c33ce121a07dfdf56541d62/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/pedro/.android/build-cache/649e0c0236d1c2b5bc3c3003c2a57467f623c862/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /Users/pedro/.android/build-cache/610ac38670cfc15422e5963de173bb60ff510ff3/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] /Users/pedro/.android/build-cache/a2e83e02ef1e9606b06dd994023ff216fd485c69/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] /Users/pedro/.android/build-cache/20143df1197d0a0d5d16e2c767a1537266c0db24/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/pedro/.android/build-cache/ef2c7ed09d3a79237cf1a68f750cedbe3db5e6a4/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/pedro/.android/build-cache/99e64f392d9f98db3c35bb2f448261a0bda0cd17/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/pedro/.android/build-cache/84aefc018727e9b5f931715c2b195ed288b92b4b/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/pedro/.android/build-cache/ec1e251a84d784ac5a1708f8c2d50f5cac206aa3/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /Users/pedro/.android/build-cache/f57bc11baccc85ada50d2f34128f40924f493e95/output/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:design:25.3.1] /Users/pedro/.android/build-cache/c2c0ebd1f01074dbe5a8756ef0807ba3dd403707/output/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:design:25.3.1] /Users/pedro/.android/build-cache/c2c0ebd1f01074dbe5a8756ef0807ba3dd403707/output/AndroidManifest.xml:26:9-47
