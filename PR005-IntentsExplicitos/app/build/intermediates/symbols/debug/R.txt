@@ -727,7 +727,7 @@ int string datos 0x7f060023
 int string datos_alumno 0x7f060024
 int string edad 0x7f060025
 int string edad_hint 0x7f060026
-int string exito_datos 0x7f060027
+int string exito_al_solicitar_datos 0x7f060027
 int string no_disponibles 0x7f060028
 int string nombre 0x7f060029
 int string nombre_completo 0x7f06002a

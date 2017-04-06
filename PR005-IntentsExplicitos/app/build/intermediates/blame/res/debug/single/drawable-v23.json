@@ -2,5 +2,9 @@
     {
         "merged": "/Users/pedro/studio/PR005-IntentsExplicitos/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
         "source": "/Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/res/drawable-v23/abc_control_background_material.xml"
+    },
+    {
+        "merged": "/Users/pedro/mvp/PR005-IntentsExplicitos/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
+        "source": "/Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/res/drawable-v23/abc_control_background_material.xml"
     }
 ]

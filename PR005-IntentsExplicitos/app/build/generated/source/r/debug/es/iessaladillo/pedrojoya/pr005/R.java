@@ -2053,7 +2053,7 @@ containing a value of this type.
         public static final int datos_alumno=0x7f060024;
         public static final int edad=0x7f060025;
         public static final int edad_hint=0x7f060026;
-        public static final int exito_al_solicitar_datos =0x7f060027;
+        public static final int exito_al_solicitar_datos=0x7f060027;
         public static final int no_disponibles=0x7f060028;
         public static final int nombre=0x7f060029;
         public static final int nombre_completo=0x7f06002a;

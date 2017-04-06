@@ -1,22 +1,22 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:2:1-33:12
+ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:2:1-33:12
 	package
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:4:11-52
-		INJECTED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:4:11-52
+		INJECTED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
 	xmlns:tools
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:3:11-57
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:3:11-57
 	xmlns:android
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:2:11-69
 	android:versionCode
-		INJECTED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
 application
-ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:6:5-31:19
+ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:6:5-31:19
 MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-v4:25.3.1] /Users/pedro/.android/build-cache/20143df1197d0a0d5d16e2c767a1537266c0db24/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-fragment:25.3.1] /Users/pedro/.android/build-cache/ef2c7ed09d3a79237cf1a68f750cedbe3db5e6a4/output/AndroidManifest.xml:29:5-20
@@ -27,51 +27,51 @@ MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/pedro/.
 MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/pedro/.android/build-cache/649e0c0236d1c2b5bc3c3003c2a57467f623c862/output/AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:support-compat:25.3.1] /Users/pedro/.android/build-cache/f57bc11baccc85ada50d2f34128f40924f493e95/output/AndroidManifest.xml:29:5-20
 	android:label
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:9:9-41
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:9:9-41
 	tools:ignore
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:11:9-60
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:11:9-60
 	android:allowBackup
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:7:9-35
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:7:9-35
 	android:icon
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:8:9-43
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:8:9-43
 	android:theme
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:10:9-40
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:10:9-40
 activity#es.iessaladillo.pedrojoya.pr005.main.MainActivity
-ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:12:9-20:20
+ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:12:9-20:20
 	android:label
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:14:13-45
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:14:13-45
 	android:name
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:13:13-46
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:13:13-46
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:15:13-19:29
+ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:15:13-19:29
 action#android.intent.action.MAIN
-ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:16:17-69
+ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:16:17-69
 	android:name
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:16:25-66
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:16:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:18:17-77
+ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:18:17-77
 	android:name
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:18:27-74
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:18:27-74
 activity#es.iessaladillo.pedrojoya.pr005.editalumno.EditAlumnoActivity
-ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:21:9-30:20
+ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:21:9-30:20
 	android:label
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:23:13-45
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:23:13-45
 	android:parentActivityName
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:24:13-60
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:24:13-60
 	android:windowSoftInputMode
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:25:13-52
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:25:13-52
 	tools:ignore
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:26:13-43
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:26:13-43
 	android:name
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:22:13-58
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:22:13-58
 meta-data#android.support.PARENT_ACTIVITY
-ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:27:13-29:54
+ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:27:13-29:54
 	android:value
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:29:17-51
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:29:17-51
 	android:name
-		ADDED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:28:17-63
+		ADDED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml:28:17-63
 uses-sdk
-INJECTED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:support-v4:25.3.1] /Users/pedro/.android/build-cache/20143df1197d0a0d5d16e2c767a1537266c0db24/output/AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:support-fragment:25.3.1] /Users/pedro/.android/build-cache/ef2c7ed09d3a79237cf1a68f750cedbe3db5e6a4/output/AndroidManifest.xml:21:5-23:60
@@ -84,11 +84,11 @@ MERGED from [com.android.support:support-compat:25.3.1] /Users/pedro/.android/bu
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
-		INJECTED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/pedro/studio/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/pedro/mvp/PR005-IntentsExplicitos/app/src/main/AndroidManifest.xml
 meta-data#android.support.VERSION
 ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:support-v4:25.3.1] /Users/pedro/.android/build-cache/20143df1197d0a0d5d16e2c767a1537266c0db24/output/AndroidManifest.xml:25:5-27:34
