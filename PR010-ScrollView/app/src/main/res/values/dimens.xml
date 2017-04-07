@@ -1,0 +1,11 @@
+<resources>
+
+    <dimen name="panel_paddingTop">8dp</dimen>
+    <dimen name="panel_paddingBottom">8dp</dimen>
+    <dimen name="panel_paddingLeft">16dp</dimen>
+    <dimen name="panel_paddingRight">8dp</dimen>
+    <dimen name="button_padding">8dp</dimen>
+
+    <integer name="txtMensaje_maxLines">5</integer>
+    
+</resources>
