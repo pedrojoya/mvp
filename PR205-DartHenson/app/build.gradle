@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "es.iessaladillo.pedrojoya.pr205"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    apt {
+        arguments {
+            "dart.henson.package" "es.iessaladillo.pedrojoya.pr205"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.f2prateek.dart:dart:$rootProject.ext.dart_version"
+    provided "com.f2prateek.dart:dart-processor:$rootProject.ext.dart_version"
+    compile "com.f2prateek.dart:henson:$rootProject.ext.dart_version"
+    provided "com.f2prateek.dart:henson-processor:$rootProject.ext.dart_version"
+
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    androidTestCompile "com.android.support:support-annotations:$rootProject.ext.support_library_version"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile ("com.android.support:support-annotations:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile ("com.android.support.test.espresso:espresso-intents:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile "com.android.support.test:runner:$rootProject.ext.support_test_version"
+    androidTestCompile "com.android.support.test:rules:$rootProject.ext.support_test_version"
+}
+
