@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:paddingBottom="@dimen/panel_margin"
+                android:paddingTop="@dimen/panel_margin">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/divider">
+
+        <ListView
+            android:id="@+id/lstAlumnos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingLeft="@dimen/panel_margin"
+            android:paddingRight="@dimen/panel_margin"
+            android:scrollbarStyle="outsideOverlay"
+            android:transcriptMode="alwaysScroll"
+            tools:listitem="@android:layout/simple_list_item_1"/>
+
+        <TextView
+            android:id="@+id/lblNoHayAlumnos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/empty_drawablePadding"
+            android:drawableTop="@drawable/ic_person_add"
+            android:text="@string/no_hay_alumnos"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+    </FrameLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:layout_above="@+id/btnAgregar"
+        android:layout_marginTop="@dimen/panel_margin"
+        android:background="@android:drawable/divider_horizontal_textfield"/>
+
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/btnAgregar"
+        android:layout_below="@+id/divider"
+        android:layout_marginLeft="@dimen/panel_margin"
+        android:layout_marginRight="@dimen/panel_margin"
+        android:layout_toLeftOf="@+id/btnAgregar"
+        android:layout_toStartOf="@+id/btnAgregar"
+        android:hint="@string/nombre"
+        android:imeOptions="actionDone"
+        android:inputType="textPersonName">
+
+        <requestFocus/>
+    </EditText>
+
+    <ImageButton
+        android:id="@+id/btnAgregar"
+        android:layout_width="@dimen/btnAgregar_width"
+        android:layout_height="@dimen/btnAgregar_width"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="@dimen/panel_margin"
+        android:layout_marginEnd="@dimen/panel_margin"
+        android:layout_marginTop="@dimen/panel_margin"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="@dimen/btnAgregar_padding"
+        android:contentDescription="@string/agregar"
+        android:scaleType="center"
+        app:srcCompat="@drawable/ic_person_add_black_24dp"/>
+
+</RelativeLayout>
