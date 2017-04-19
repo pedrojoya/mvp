@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import es.iessaladillo.pedrojoya.pr007.R;
 import es.iessaladillo.pedrojoya.pr007.components.MessageManager.MessageManager;
 import es.iessaladillo.pedrojoya.pr007.components.MessageManager.ToastMessageManager;
+import es.iessaladillo.pedrojoya.pr007.utils.KeyboardUtils;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity implements MainContract.View {
@@ -45,6 +47,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         lblClave = (TextView) findViewById(R.id.lblClave);
         txtUsuario = (EditText) findViewById(R.id.txtUsuario);
         txtClave = (EditText) findViewById(R.id.txtClave);
+        txtClave.setOnEditorActionListener((textView, actionId, keyEvent) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                KeyboardUtils.hideKeyboard(MainActivity.this, textView);
+                mPresenter.doAceptar(txtUsuario.getText().toString(),
+                        txtClave.getText().toString());
+                // Se ha gestionado el evento.
+                return true;
+            }
+            return false;
+        });
         btnAceptar.setOnClickListener(v -> mPresenter.doAceptar(txtUsuario.getText().toString(),
                 txtClave.getText().toString()));
         btnCancelar.setOnClickListener(v -> mPresenter.doCancelar());
