@@ -30,11 +30,11 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void doAgregar(String nombre) {
-
+        mView.agregarAlumno(nombre.trim());
     }
 
     @Override
-    public void doOnAlumnoClicked(String item) {
-
+    public void doOnAlumnoClicked(String alumno) {
+        mView.eliminarAlumno(alumno);
     }
 }

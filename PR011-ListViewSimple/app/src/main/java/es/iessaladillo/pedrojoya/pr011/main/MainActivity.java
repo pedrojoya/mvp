@@ -1,37 +1,32 @@
 package es.iessaladillo.pedrojoya.pr011.main;
 
-import android.content.res.ColorStateList;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import es.iessaladillo.pedrojoya.pr011.R;
 import es.iessaladillo.pedrojoya.pr011.components.MessageManager.MessageManager;
 import es.iessaladillo.pedrojoya.pr011.components.MessageManager.ToastMessageManager;
+import es.iessaladillo.pedrojoya.pr011.utils.TintUtils;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
-    private static final String STATE_LISTA = "estadoLista";
-    private static final String STATE_LISTA_CONTENIDO = "contenidoLista";
+    private static final String STATE_LISTA = "STATE_LISTA";
+    private static final String STATE_LISTA_CONTENIDO = "STATE_LISTA_CONTENIDO";
 
+    private MainContract.Presenter mPresenter;
+    private MessageManager mMessageManager;
     private ArrayAdapter<String> mAdaptador;
     private Parcelable mEstadoLista;
     private ArrayList<String> mListaContenido;
@@ -39,9 +34,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private EditText txtNombre;
     private ImageButton btnAgregar;
     private ListView lstAlumnos;
-
-    private MainContract.Presenter mPresenter;
-    private MessageManager mMessageManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,7 +58,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private void initVistas() {
         btnAgregar = (ImageButton) findViewById(R.id.btnAgregar);
         btnAgregar.setOnClickListener(v -> mPresenter.doAgregar(txtNombre.getText().toString()));
-        tintButton(btnAgregar);
+        TintUtils.tintViewWithColorStateList(btnAgregar,
+                ContextCompat.getColorStateList(this, R.color.btn_color));
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         txtNombre.addTextChangedListener(new TextWatcher() {
 
@@ -104,52 +97,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                         (String) lstAlumnos.getItemAtPosition(position)));
         mAdaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mListaContenido);
         lstAlumnos.setAdapter(mAdaptador);
+        if (mEstadoLista != null) {
+            lstAlumnos.onRestoreInstanceState(mEstadoLista);
+        }
     }
 
-    // btnAgregar activo o no dependiendo de si hay nombre.
     private void checkDatos() {
         btnAgregar.setEnabled(isFormValid());
     }
 
-    // Retorna si el formulario es válido.
     private boolean isFormValid() {
-        return !TextUtils.isEmpty(txtNombre.getText().toString();
-    }
-
-    // Al hacer click sobre un elemento de la lista.
-    @Override
-    public void onItemClick(AdapterView<?> lst, View v, int position, long id) {
-        // Se elimina el elemento sobre el que se ha pulsado.
-        eliminarAlumno(lst.getItemAtPosition(position));
-    }
-
-    // Al hacer click sobre el botón.
-    @Override
-    public void onClick(View v) {
-        // Dependiendo de la vista pulsada.
-        switch (v.getId()) {
-            case R.id.btnAgregar:
-                String nombre = txtNombre.getText().toString();
-                if (!TextUtils.isEmpty(nombre)) {
-                    agregarAlumno(nombre);
-                }
-                break;
-            default:
-        }
-    }
-
-    // Agrega un alumno a la lista.
-    private void agregarAlumno(String nombre) {
-        // Se agrega el alumno.
-        mAdaptador.add(nombre);
-        // Se pone en blanco txtNombre.
-        txtNombre.setText("");
-        checkDatos();
-    }
-
-    // Elimina un alumno de la lista.
-    private void eliminarAlumno(Object item) {
-        mAdaptador.remove((String) item);
+        return !TextUtils.isEmpty(txtNombre.getText().toString());
     }
 
     @Override
@@ -162,19 +120,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        // Se retaura el estado de la lista.
-        if (mEstadoLista != null) {
-            lstAlumnos.onRestoreInstanceState(mEstadoLista);
-        }
+    public void agregarAlumno(String alumno) {
+        mAdaptador.add(alumno);
+        resetVistas();
+        checkDatos();
+        mMessageManager.showMessage(btnAgregar, getString(R.string.alumno_agregado, alumno));
     }
 
-    private void tintButton(@NonNull ImageButton btn) {
-        ColorStateList colores = ContextCompat.getColorStateList(this, R.color.btn_color);
-        Drawable d = DrawableCompat.wrap(btn.getDrawable());
-        DrawableCompat.setTintList(d, colores);
-        btn.setImageDrawable(d);
+    @Override
+    public void eliminarAlumno(String alumno) {
+        mAdaptador.remove(alumno);
+        mMessageManager.showMessage(btnAgregar, getString(R.string.alumno_eliminado, alumno));
+    }
+
+    private void resetVistas() {
+        txtNombre.setText("");
     }
 
 }

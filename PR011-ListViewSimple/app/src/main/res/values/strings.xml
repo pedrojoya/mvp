@@ -4,4 +4,6 @@
     <string name="nombre">Nombre</string>
     <string name="agregar">Agregar</string>
     <string name="no_hay_alumnos">No hay alumnos</string>
+    <string name="alumno_agregado">Se ha agregado el alummo %1$s</string>
+    <string name="alumno_eliminado">Se ha eliminado el alumno %1$s</string>
 </resources>
