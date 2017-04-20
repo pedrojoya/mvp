@@ -1,3 +1,4 @@
+<!--suppress AndroidUnknownAttribute, AndroidUnknownAttribute, AndroidUnknownAttribute -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
@@ -43,6 +44,8 @@
                     android:hint="@string/nombre"
                     android:inputType="textPersonName"
                     android:maxLength="40"
+                    app:onTextChangedValidator="@{validator}"
+                    app:disableValidationWhenEmpty="@{false}"
                     app:validateEmpty="@{true}"
                     app:validateEmptyAutoDismiss="@{true}"
                     app:validateType='@{"username"}'
@@ -68,6 +71,8 @@
                     android:hint="@string/telefono"
                     android:inputType="phone"
                     android:maxLength="9"
+                    app:onTextChangedValidator="@{validator}"
+                    app:disableValidationWhenEmpty="@{true}"
                     app:validateEmpty="@{false}"
                     app:validateEmptyAutoDismiss="@{true}"
                     app:validateMinLength="@{9}"
@@ -92,6 +97,8 @@
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
                     android:maxLength="40"
+                    app:onTextChangedValidator="@{validator}"
+                    app:disableValidationWhenEmpty="@{true}"
                     app:validateType='@{"email"}'
                     app:validateTypeAutoDismiss="@{true}"/>
 
@@ -115,7 +122,9 @@
                     android:hint="@string/password"
                     android:inputType="textPassword"
                     android:maxLength="20"
-                    android:onEditorAction="@{(view, actionId, event) -> presenter.txtPasswordOnEditorAction()}"
+                    android:onEditorAction="@{(view, actionId, event) -> presenter.txtPasswordOnEditorAction(actionId)}"
+                    app:onTextChangedValidator="@{validator}"
+                    app:disableValidationWhenEmpty="@{false}"
                     app:validateEmpty="@{true}"
                     app:validateEmptyAutoDismiss="@{true}"/>
 
@@ -127,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tilPassword"
                 android:layout_centerInParent="true"
-                android:onClick="@{(view) -> presenter.btnGuardarOnClick(view)}"
+                android:onClick="@{() -> presenter.guardar()}"
                 android:text="@string/guardar"/>
 
         </RelativeLayout>

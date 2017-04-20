@@ -4,18 +4,13 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import br.com.ilhasoft.support.validation.Validator;
 import es.iessaladillo.pedrojoya.pr207.R;
 import es.iessaladillo.pedrojoya.pr207.databinding.ActivityMainBinding;
+import es.iessaladillo.pedrojoya.pr207.utils.KeyboardUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,50 +21,41 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mValidator = new Validator(mBinding);
-        mValidator.enableFormValidationMode();
+        setupValidator();
         mBinding.setValidator(mValidator);
         mBinding.setPresenter(this);
         checkFormValid();
     }
 
-    public void btnGuardarOnClick(View view) {
-        guardar();
+    private void setupValidator() {
+        mValidator = new Validator(mBinding);
+        mValidator.enableFormValidationMode();
+        // El teléfono y el email no son requeridos por lo que sólo se validarán si tienen datos.
+        mValidator.disableValidation(mBinding.txtTelefono);
+        mValidator.disableValidation(mBinding.txtEmail);
     }
 
-    public boolean txtPasswordOnEditorAction() {
-        guardar();
-        return true;
+    public boolean txtPasswordOnEditorAction(int actionId) {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            guardar();
+            return true;
+        }
+        return false;
     }
 
-    private void guardar() {
-        List<View> vistas = new ArrayList<>();
-        vistas.add(mBinding.txtNombre);
-        if (!TextUtils.isEmpty(mBinding.txtTelefono.getText())) {
-            vistas.add(mBinding.txtTelefono);
-        }
-        if (!TextUtils.isEmpty(mBinding.txtEmail.getText())) {
-            vistas.add(mBinding.txtEmail);
-        }
-        vistas.add(mBinding.txtPassword);
-        if (mValidator.validate(vistas)) {
+    @SuppressWarnings("WeakerAccess")
+    public void guardar() {
+        KeyboardUtils.hideKeyboard(this, mBinding.btnGuardar);
+        if (mValidator.validate()) {
             Toast.makeText(this, R.string.guardando, Toast.LENGTH_SHORT).show();
         }
     }
 
-    // Llamado por DataBinding cuando cambia el texto de algun EditText.
+    @SuppressWarnings("WeakerAccess")
     public void checkFormValid() {
         mBinding.btnGuardar.setEnabled(
                 !TextUtils.isEmpty(mBinding.txtNombre.getText()) && !TextUtils.isEmpty(
                         mBinding.txtPassword.getText()));
-    }
-
-    public boolean txtPasswordOnEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (actionId == EditorInfo.IME_ACTION_DONE) {
-            btnGuardarOnClick(mBinding.btnGuardar);
-            return true;
-        }
-        return false;
     }
 
 }
