@@ -9,6 +9,9 @@ import br.com.ilhasoft.support.validation.Validator;
 
 public class DataBindingAdapters {
 
+    private DataBindingAdapters() {
+    }
+
     @BindingAdapter("app:onTextChangedValidator")
     public static void setOnTextChangedValidator(EditText txt, Validator validator) {
         txt.addTextChangedListener(new TextWatcher() {
