@@ -18,10 +18,10 @@ import es.iessaladillo.pedrojoya.pr158.R;
 import es.iessaladillo.pedrojoya.pr158.db.entities.Alumno;
 import es.iessaladillo.pedrojoya.pr158.detalle.DetalleActivity;
 import es.iessaladillo.pedrojoya.pr158.utils.SharedTransitionsUtils;
-import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class MainActivity extends AppCompatActivity implements AlumnosAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements MainContract.View, AlumnosAdapter
+        .OnItemClickListener, AlumnosAdapter.OnEmptyStateListener {
 
     private static final int RC_DETALLE = 1;
 
@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     FloatingActionButton fabAccion;
 
     private AlumnosAdapter mAdaptador;
-    private Realm mRealm;
-    private RecyclerView.AdapterDataObserver mObservador;
     private RealmResults<Alumno> mData;
+    private MainPresenter mPresenter;
+    private View mFotoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        // Se obtiene la instancia de Realm.
-        mRealm = Realm.getDefaultInstance();
+        mPresenter = new MainPresenter(this);
+        mData = mPresenter.getDatos();
         initVistas();
     }
 
@@ -59,30 +59,14 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         setSupportActionBar(toolbar);
     }
 
-    @OnClick(R.id.fabAccion)
-    public void agregar() {
-        DetalleActivity.startForResult(MainActivity.this, RC_DETALLE);
-    }
-
     private void configRecyclerView() {
         lstAlumnos.setHasFixedSize(true);
         lstAlumnos.setLayoutManager(
                 new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
-        mData = getAlumnos();
-        mAdaptador = new AlumnosAdapter(mRealm, mData);
-        mAdaptador.setOnItemClickListener(MainActivity.this);
-        mObservador = new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                checkAdapterIsEmpty();
-            }
-
-            @Override
-            public void onItemRangeRemoved(int positionStart, int itemCount) {
-                checkAdapterIsEmpty();
-            }
-        };
+        mAdaptador = new AlumnosAdapter(mData);
+        mAdaptador.setOnItemClickListener(this);
+        mAdaptador.setOnEmptyStateListener(this);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                         ItemTouchHelper.RIGHT) {
@@ -95,42 +79,49 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                        // Se elimina el elemento
-                        mAdaptador.removeItem(viewHolder.getAdapterPosition());
-                        checkAdapterIsEmpty();
+                        mPresenter.doEliminarAlumno(mData.get(viewHolder.getAdapterPosition()));
                     }
                 });
         itemTouchHelper.attachToRecyclerView(lstAlumnos);
         lstAlumnos.setAdapter(mAdaptador);
-        checkAdapterIsEmpty();
+    }
+
+    @OnClick(R.id.fabAccion)
+    public void agregar() {
+        mPresenter.doAgregar();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        checkAdapterIsEmpty();
-    }
-
-    private RealmResults<Alumno> getAlumnos() {
-        return mRealm.where(Alumno.class).findAllSorted("nombre");
-    }
-
-    private void checkAdapterIsEmpty() {
-        lblNoHayAlumnos.setVisibility(
-                mAdaptador.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
     public void onItemClick(View view, Alumno alumno, int position) {
-        DetalleActivity.startForResult(this, RC_DETALLE, alumno.getId(),
-                view.findViewById(R.id.imgFoto));
+        mFotoView = view.findViewById(R.id.imgFoto);
+        mPresenter.doDetalle(alumno);
     }
 
     @Override
     protected void onDestroy() {
         mAdaptador.onDestroy();
-        mRealm.close();
+        mPresenter.onDestroy();
         super.onDestroy();
+    }
+
+    @Override
+    public void navigateToDetalleActivity() {
+        DetalleActivity.startForResult(this, RC_DETALLE);
+    }
+
+    @Override
+    public void navigateToDetalleActivity(String idAlumno) {
+        DetalleActivity.startForResult(this, RC_DETALLE, idAlumno, mFotoView);
+    }
+
+    @Override
+    public void onEmptyState(boolean empty) {
+        lblNoHayAlumnos.setVisibility(empty ? View.VISIBLE : View.INVISIBLE);
     }
 
 }

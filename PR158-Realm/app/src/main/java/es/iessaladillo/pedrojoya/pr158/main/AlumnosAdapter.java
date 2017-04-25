@@ -19,7 +19,6 @@ import es.iessaladillo.pedrojoya.pr158.db.entities.Alumno;
 import es.iessaladillo.pedrojoya.pr158.db.entities.Asignatura;
 import io.realm.OrderedCollectionChangeSet;
 import io.realm.OrderedRealmCollectionChangeListener;
-import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
@@ -27,11 +26,10 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         OrderedRealmCollectionChangeListener<RealmResults<Alumno>> {
 
     private final RealmResults<Alumno> mDatos;
-    private final Realm mRealm;
     private OnItemClickListener onItemClickListener;
+    private OnEmptyStateListener onEmptyStateListener;
 
-    public AlumnosAdapter(Realm realm, RealmResults<Alumno> datos) {
-        mRealm = realm;
+    public AlumnosAdapter(RealmResults<Alumno> datos) {
         mDatos = datos;
         mDatos.addChangeListener(this);
         // Se establece que cada item tiene un id único.
@@ -75,16 +73,12 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         return mDatos.get(position).getTimestamp();
     }
 
-    public void removeItem(int position) {
-        // Se elimina el alumno de la base de datos.
-        mRealm.beginTransaction();
-        mDatos.deleteFromRealm(position);
-        mRealm.commitTransaction();
-    }
-
-    // Establece el listener a informar cuando se hace click sobre un elemento de la lista.
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
+    }
+
+    public void setOnEmptyStateListener(OnEmptyStateListener listener) {
+        this.onEmptyStateListener = listener;
     }
 
     @Override
@@ -92,6 +86,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         // `null`  means the async query returns the first time.
         if (changeSet == null) {
             notifyDataSetChanged();
+            onEmptyStateListener.onEmptyState(mDatos.isEmpty());
             return;
         }
         // For deletions, the adapter has to be notified in reverse order.
@@ -110,6 +105,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         for (OrderedCollectionChangeSet.Range range : modifications) {
             notifyItemRangeChanged(range.startIndex, range.length);
         }
+        // Se notifica al listener.
+        onEmptyStateListener.onEmptyState(mDatos.isEmpty());
     }
 
     public void onDestroy() {
@@ -165,6 +162,10 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
+    }
+
+    public interface OnEmptyStateListener {
+        void onEmptyState(boolean empty);
     }
 
 }
