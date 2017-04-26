@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr158.utils;
+package es.iessaladillo.pedrojoya.pr158.widget;
 
 import android.content.Context;
 import android.content.DialogInterface;

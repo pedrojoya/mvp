@@ -40,7 +40,7 @@ import butterknife.OnFocusChange;
 import es.iessaladillo.pedrojoya.pr158.R;
 import es.iessaladillo.pedrojoya.pr158.db.entities.Alumno;
 import es.iessaladillo.pedrojoya.pr158.db.entities.Asignatura;
-import es.iessaladillo.pedrojoya.pr158.utils.ClickToMultipleSelectEditText;
+import es.iessaladillo.pedrojoya.pr158.widget.ClickToMultipleSelectEditText;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
