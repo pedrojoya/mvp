@@ -20,6 +20,20 @@ public class Alumno extends RealmObject {
 
     private long timestamp;
 
+    public Alumno(Alumno alumno) {
+        id = alumno.getId();
+        nombre = alumno.getNombre();
+        direccion = alumno.getDireccion();
+        urlFoto = alumno.getUrlFoto();
+        asignaturas = alumno.getAsignaturas();
+    }
+
+    public Alumno(String id) {
+        this.id = id;
+    }
+
+    public Alumno() { }
+
     public String getDireccion() {
         return direccion;
     }

@@ -22,12 +22,7 @@ public class App extends Application {
         RealmConfiguration config = new RealmConfiguration.Builder()
                 //.name("instituto.realm")
                 .schemaVersion(DB_VERSION)
-                .initialData(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        addInitialData(realm);
-                    }
-                })
+                .initialData(this::addInitialData)
                 .migration(new DbMigration())
                 .build();
         Realm.setDefaultConfiguration(config);

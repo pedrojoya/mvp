@@ -33,7 +33,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         mDatos = datos;
         mDatos.addChangeListener(this);
         // Se establece que cada item tiene un id único.
-        setHasStableIds(true);
+        //setHasStableIds(true);
     }
 
     @Override
@@ -41,13 +41,10 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.activity_main_item, parent, false);
         final ViewHolder viewHolder = new ViewHolder(itemView);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                }
+        itemView.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
+                        viewHolder.getAdapterPosition());
             }
         });
         return viewHolder;

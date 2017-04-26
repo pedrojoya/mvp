@@ -29,4 +29,9 @@ public class Asignatura extends RealmObject {
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString() {
+        return id;
+    }
+
 }

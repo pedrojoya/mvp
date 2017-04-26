@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -18,12 +19,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 repositories {
-    maven {
-        url 'https://github.com/uPhyca/stetho-realm/raw/master/maven-repo'
-    }
+    // Para Realm Stetho
+    maven { url 'https://github.com/uPhyca/stetho-realm/raw/master/maven-repo' }
+    // Para ActivityStarter
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -41,4 +48,6 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
     compile "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
     compile "com.uphyca:stetho_realm:$rootProject.ext.stetho_realm_version"
+    compile "com.github.marcinmoskala.activitystarter:activitystarter:$rootProject.ext.activitystarter_version"
+    annotationProcessor "com.github.marcinmoskala.activitystarter:activitystarter-compiler:$rootProject.ext.activitystarter_version"
 }

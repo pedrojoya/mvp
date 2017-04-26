@@ -1,7 +1,10 @@
 package es.iessaladillo.pedrojoya.pr158.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +20,7 @@ import butterknife.OnClick;
 import es.iessaladillo.pedrojoya.pr158.R;
 import es.iessaladillo.pedrojoya.pr158.db.entities.Alumno;
 import es.iessaladillo.pedrojoya.pr158.detalle.DetalleActivity;
+import es.iessaladillo.pedrojoya.pr158.detalle.DetalleActivityStarter;
 import es.iessaladillo.pedrojoya.pr158.utils.SharedTransitionsUtils;
 import io.realm.RealmResults;
 
@@ -111,12 +115,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void navigateToDetalleActivity() {
-        DetalleActivity.startForResult(this, RC_DETALLE);
+        DetalleActivityStarter.start(this, getString(R.string.agregar_alumno));
     }
 
     @Override
     public void navigateToDetalleActivity(String idAlumno) {
-        DetalleActivity.startForResult(this, RC_DETALLE, idAlumno, mFotoView);
+        Intent intent = DetalleActivityStarter.getIntent(this,
+                getString(R.string.actualizar_alumno), idAlumno);
+        ActivityCompat.startActivity(this, intent,
+                ActivityOptionsCompat.makeSceneTransitionAnimation(this, mFotoView,
+                        DetalleActivity.TN_FOTO).toBundle());
     }
 
     @Override

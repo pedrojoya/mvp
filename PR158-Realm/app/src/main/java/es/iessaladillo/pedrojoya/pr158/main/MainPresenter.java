@@ -21,7 +21,13 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void onViewDetach() {
-        mView = null;
+        mView = new MainContract.View() {
+            @Override
+            public void navigateToDetalleActivity() { }
+
+            @Override
+            public void navigateToDetalleActivity(String idAlumno) { }
+        };
     }
 
     @Override
