@@ -13,7 +13,6 @@
     <!-- RecyclerView -->
     <dimen name="lst_padding">8dp</dimen>
 
-    <!-- Single line with avatar list item -->
     <dimen name="two_line_tile_height">72dp</dimen>
     <dimen name="two_line_avatar_width">40dp</dimen>
     <dimen name="two_line_avatar_height">40dp</dimen>
@@ -23,6 +22,10 @@
     <dimen name="two_line_secundary_text_paddingBottom">20dp</dimen>
     <dimen name="two_line_text_paddingLeft">72dp</dimen>
     <dimen name="two_line_text_marginRight">16dp</dimen>
+    <dimen name="two_line_icon_marginTop">29dp</dimen>
+    <dimen name="two_line_icon_width">24dp</dimen>
+    <dimen name="two_line_icon_height">24dp</dimen>
+
     <dimen name="fab_elevation">4dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="collapsing_titleMarginStart">15dp</dimen>

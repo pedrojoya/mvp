@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -16,10 +17,8 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.iessaladillo.pedrojoya.pr158.R;
 import es.iessaladillo.pedrojoya.pr158.db.entities.Alumno;
-import es.iessaladillo.pedrojoya.pr158.db.entities.Asignatura;
 import io.realm.OrderedCollectionChangeSet;
 import io.realm.OrderedRealmCollectionChangeListener;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> implements
@@ -38,16 +37,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.activity_main_item, parent, false);
-        final ViewHolder viewHolder = new ViewHolder(itemView);
-        itemView.setOnClickListener(v -> {
-            if (onItemClickListener != null) {
-                onItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
-                        viewHolder.getAdapterPosition());
-            }
-        });
-        return viewHolder;
+        return new ViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.activity_main_item, parent, false));
     }
 
     @Override
@@ -111,7 +102,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     @SuppressWarnings("unused")
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...
         @BindView(R.id.lblNombre)
@@ -120,8 +111,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         public TextView lblDireccion;
         @BindView(R.id.imgFoto)
         public CircleImageView imgAvatar;
-        @BindView(R.id.lblAsignaturas)
-        public TextView lblAsignaturas;
+        @BindView(R.id.imgAsignaturas)
+        public ImageView imgAsignaturas;
 
         // El constructor recibe la vista-fila.
         public ViewHolder(View itemView) {
@@ -134,15 +125,18 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             // Se escriben los mDatos en la vista.
             lblNombre.setText(alumno.getNombre());
             lblDireccion.setText(alumno.getDireccion());
-            RealmList<Asignatura> asignaturas = alumno.getAsignaturas();
-            ArrayList<String> nombresAsignaturas = new ArrayList<>();
-            for (Asignatura asignatura : asignaturas) {
-                nombresAsignaturas.add(asignatura.getId());
-            }
-            lblAsignaturas.setText(getCadenaAsignaturas(nombresAsignaturas));
             String url = alumno.getUrlFoto();
             Picasso.with(imgAvatar.getContext()).load(url).placeholder(R.drawable.ic_user).error(
                     R.drawable.ic_user).into(imgAvatar);
+            itemView.setOnClickListener(v -> {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(v, mDatos.get(getAdapterPosition()),
+                            getAdapterPosition());
+                }
+            });
+            imgAsignaturas.setOnClickListener(
+                    v -> onItemClickListener.onItemIconClick(v, mDatos.get(getAdapterPosition()),
+                            getAdapterPosition()));
         }
 
         private String getCadenaAsignaturas(ArrayList<String> nombresAsignaturas) {
@@ -159,6 +153,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
+
+        void onItemIconClick(View view, Alumno alumno, int position);
     }
 
     public interface OnEmptyStateListener {

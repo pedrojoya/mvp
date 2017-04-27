@@ -1,18 +1,13 @@
 package es.iessaladillo.pedrojoya.pr158.detalle;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
 import android.text.TextUtils;
-import android.transition.Fade;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -20,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.Random;
@@ -35,17 +29,10 @@ import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import es.iessaladillo.pedrojoya.pr158.R;
 import es.iessaladillo.pedrojoya.pr158.db.entities.Alumno;
-import es.iessaladillo.pedrojoya.pr158.utils.SharedTransitionsUtils;
 
 
 @SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class DetalleActivity extends AppCompatActivity implements DetalleContract.View {
-
-    public static final String TN_FOTO = "transition_foto";
-    private static final long ENTER_TRANSITION_DURATION_MILIS = 500;
-
-    private static final String STATE_INDICES_ASIGNATURAS_SELECCIONADAS =
-            "indicesAsignaturasSeleccionadas";
 
     @BindView(R.id.imgFoto)
     ImageView imgFoto;
@@ -57,8 +44,6 @@ public class DetalleActivity extends AppCompatActivity implements DetalleContrac
     TextInputEditText txtNombre;
     @BindView(R.id.txtDireccion)
     TextInputEditText txtDireccion;
-    @BindView(R.id.txtAsignaturas)
-    TextInputEditText txtAsignaturas;
     @BindView(R.id.fabAccion)
     FloatingActionButton fabAccion;
 
@@ -77,12 +62,10 @@ public class DetalleActivity extends AppCompatActivity implements DetalleContrac
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedTransitionsUtils.requestContentTransitionsFeature(getWindow());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
         ButterKnife.bind(this);
         ActivityStarter.fill(this, savedInstanceState);
-        configTransitions();
         mPresenter = new DetallePresenter(this);
         mAleatorio = new Random();
         initVistas();
@@ -92,18 +75,6 @@ public class DetalleActivity extends AppCompatActivity implements DetalleContrac
     private void initVistas() {
         setTitle(title);
         configToolbar();
-        configAsignaturas();
-        ViewCompat.setTransitionName(imgFoto, TN_FOTO);
-    }
-
-    private void configAsignaturas() {
-        txtAsignaturas.setFocusable(true);
-        txtAsignaturas.setClickable(true);
-        txtAsignaturas.setInputType(InputType.TYPE_NULL);
-        txtAsignaturas.setKeyListener(null);
-        txtAsignaturas.setOnFocusChangeListener(
-                (view, b) -> mPresenter.selectAsignaturas(idAlumno, mAlumno));
-        //txtAsignaturas.setOnClickListener(v -> mPresenter.selectAsignaturas(idAlumno, mAlumno));
     }
 
     @OnClick(R.id.imgFoto)
@@ -138,7 +109,7 @@ public class DetalleActivity extends AppCompatActivity implements DetalleContrac
                 txtDireccion.getText().toString())) {
             mPresenter.doGuardar(idAlumno, mAlumno, txtNombre.getText().toString(),
                     txtDireccion.getText().toString(), urlFoto);
-            ActivityCompat.finishAfterTransition(DetalleActivity.this);
+            finish();
         }
     }
 
@@ -154,62 +125,27 @@ public class DetalleActivity extends AppCompatActivity implements DetalleContrac
         super.onSaveInstanceState(outState);
     }
 
-    // Se configuran las transiciones de la actividad.
-    private void configTransitions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // Transición de entrada.
-            Fade enterTransition = new Fade(Fade.IN);
-            enterTransition.excludeTarget(android.R.id.statusBarBackground, true);
-            enterTransition.excludeTarget(android.R.id.navigationBarBackground, true);
-            enterTransition.excludeTarget(R.id.appbar, true);
-            enterTransition.setDuration(ENTER_TRANSITION_DURATION_MILIS);
-            getWindow().setEnterTransition(enterTransition);
-            // Se pospone la animación de entrada hasta que la imagen
-            // esté disponible.
-            //supportPostponeEnterTransition();
-            // Transición de retorno.
-            getWindow().setReturnTransition(new Fade(Fade.OUT));
-        }
-    }
-
     @Override
     public boolean onNavigateUp() {
         onBackPressed();
         return true;
     }
 
-    @Override
-    public void onBackPressed() {
-        ActivityCompat.finishAfterTransition(this);
-    }
-
-
     private void mostrarFoto(String urlFoto) {
-        Picasso.with(this).load(this.urlFoto).placeholder(R.drawable.placeholder).error(
-                R.drawable.placeholder).fit().noFade().centerCrop().into(imgFoto, new Callback() {
-            @Override
-            public void onSuccess() {
-                supportStartPostponedEnterTransition();
-            }
-
-            @Override
-            public void onError() {
-                supportStartPostponedEnterTransition();
-            }
-        });
+        Picasso.with(this).load(urlFoto).placeholder(R.drawable.placeholder).error(
+                R.drawable.placeholder).fit().noFade().centerCrop().into(imgFoto);
     }
-
 
     @Override
     public void showAlumno(Alumno alumno) {
         mAlumno = alumno;
+        urlFoto = alumno.getUrlFoto();
         alumnoToVistas(alumno);
     }
 
     private void alumnoToVistas(Alumno alumno) {
         txtNombre.setText(alumno.getNombre());
         txtDireccion.setText(alumno.getDireccion());
-        txtAsignaturas.setText(TextUtils.join(", ", alumno.getAsignaturas()));
         mostrarFoto(alumno.getUrlFoto());
     }
 
@@ -220,7 +156,6 @@ public class DetalleActivity extends AppCompatActivity implements DetalleContrac
             urlFoto = generateRandomFoto();
         }
         mostrarFoto(urlFoto);
-        txtAsignaturas.setEnabled(false);
     }
 
     @Override

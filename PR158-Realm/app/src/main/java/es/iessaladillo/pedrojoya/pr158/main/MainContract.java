@@ -15,12 +15,16 @@ public interface MainContract {
         void doDetalle(Alumno alumno);
 
         void doEliminarAlumno(Alumno alumno);
+
+        void showAsignaturas(Alumno alumno);
     }
 
     interface View {
         void navigateToDetalleActivity();
 
         void navigateToDetalleActivity(String idAlumno);
+
+        void navigateToAsignaturasAlumnoActivity();
     }
 
     interface Usecase {

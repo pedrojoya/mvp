@@ -29,8 +29,8 @@
         android:paddingRight="@dimen/two_line_text_paddingLeft"
         android:paddingEnd="@dimen/two_line_text_paddingLeft"
         android:paddingTop="@dimen/two_line_text_paddingTop"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_toLeftOf="@+id/imgAsignaturas"
+        android:layout_toStartOf="@+id/imgAsignaturas"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         tools:text="Baldomero Llegate Ligero"
@@ -46,8 +46,8 @@
         android:paddingStart="@dimen/two_line_text_paddingLeft"
         android:paddingRight="@dimen/two_line_text_paddingLeft"
         android:paddingEnd="@dimen/two_line_text_paddingLeft"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_toLeftOf="@+id/imgAsignaturas"
+        android:layout_toStartOf="@+id/imgAsignaturas"
         android:layout_below="@+id/lblNombre"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -56,23 +56,17 @@
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
         android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/lblAsignaturas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/two_line_secundary_text_paddingBottom"
-        android:paddingLeft="@dimen/two_line_text_paddingLeft"
-        android:paddingStart="@dimen/two_line_text_paddingLeft"
-        android:paddingRight="@dimen/two_line_text_paddingLeft"
-        android:paddingEnd="@dimen/two_line_text_paddingLeft"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAsignaturas"
+        android:layout_width="@dimen/two_line_icon_width"
+        android:layout_height="@dimen/two_line_icon_height"
+        android:contentDescription="@string/asignaturas"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/lblDireccion"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        tools:text="@string/ninguna"
+        android:layout_marginTop="@dimen/two_line_icon_marginTop"
         android:layout_marginRight="@dimen/two_line_text_marginRight"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
-        android:textSize="14sp" />
+        android:src="@drawable/ic_folder" />
+
 
 </RelativeLayout>

@@ -27,6 +27,11 @@ public class MainPresenter implements MainContract.Presenter {
 
             @Override
             public void navigateToDetalleActivity(String idAlumno) { }
+
+            @Override
+            public void navigateToAsignaturasAlumnoActivity() {
+
+            }
         };
     }
 
@@ -58,6 +63,11 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void doEliminarAlumno(Alumno alumno) {
         mUseCase.eliminarAlumno(alumno);
+    }
+
+    @Override
+    public void showAsignaturas(Alumno alumno) {
+        mView.navigateToAsignaturasAlumnoActivity();
     }
 
 }

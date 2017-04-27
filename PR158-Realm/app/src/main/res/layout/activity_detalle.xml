@@ -90,21 +90,6 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                android:hint="@string/asignaturas">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/txtAsignaturas"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_arrow_drop_down"
-                    android:drawableRight="@drawable/ic_arrow_drop_down"
-                    android:inputType="none"/>
-
-            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

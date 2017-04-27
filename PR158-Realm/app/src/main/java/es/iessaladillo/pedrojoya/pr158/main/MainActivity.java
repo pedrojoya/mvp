@@ -1,10 +1,7 @@
 package es.iessaladillo.pedrojoya.pr158.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,21 +10,19 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import es.iessaladillo.pedrojoya.pr158.R;
 import es.iessaladillo.pedrojoya.pr158.db.entities.Alumno;
-import es.iessaladillo.pedrojoya.pr158.detalle.DetalleActivity;
 import es.iessaladillo.pedrojoya.pr158.detalle.DetalleActivityStarter;
 import es.iessaladillo.pedrojoya.pr158.utils.SharedTransitionsUtils;
 import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View, AlumnosAdapter
         .OnItemClickListener, AlumnosAdapter.OnEmptyStateListener {
-
-    private static final int RC_DETALLE = 1;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -107,6 +102,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
+    public void onItemIconClick(View view, Alumno alumno, int position) {
+        mPresenter.showAsignaturas(alumno);
+    }
+
+    @Override
     protected void onDestroy() {
         mAdaptador.onDestroy();
         mPresenter.onDestroy();
@@ -120,11 +120,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void navigateToDetalleActivity(String idAlumno) {
-        Intent intent = DetalleActivityStarter.getIntent(this,
-                getString(R.string.actualizar_alumno), idAlumno);
-        ActivityCompat.startActivity(this, intent,
-                ActivityOptionsCompat.makeSceneTransitionAnimation(this, mFotoView,
-                        DetalleActivity.TN_FOTO).toBundle());
+        DetalleActivityStarter.start(this, getString(R.string.actualizar_alumno), idAlumno);
+    }
+
+    @Override
+    public void navigateToAsignaturasAlumnoActivity() {
+        // TODO
+        Toast.makeText(this, "Ir a asignaturas del alumno", Toast.LENGTH_SHORT).show();
     }
 
     @Override
