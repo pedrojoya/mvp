@@ -24,7 +24,7 @@ public interface MainContract {
 
         void navigateToDetalleActivity(String idAlumno);
 
-        void navigateToAsignaturasAlumnoActivity();
+        void navigateToAsignaturasAlumnoActivity(String idAlumno);
     }
 
     interface Usecase {

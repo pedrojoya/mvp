@@ -29,9 +29,8 @@ public class MainPresenter implements MainContract.Presenter {
             public void navigateToDetalleActivity(String idAlumno) { }
 
             @Override
-            public void navigateToAsignaturasAlumnoActivity() {
+            public void navigateToAsignaturasAlumnoActivity(String idAlumno) { }
 
-            }
         };
     }
 
@@ -67,7 +66,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void showAsignaturas(Alumno alumno) {
-        mView.navigateToAsignaturasAlumnoActivity();
+        mView.navigateToAsignaturasAlumnoActivity(alumno.getId());
     }
 
 }

@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,6 +17,7 @@ import butterknife.OnClick;
 import es.iessaladillo.pedrojoya.pr158.R;
 import es.iessaladillo.pedrojoya.pr158.db.entities.Alumno;
 import es.iessaladillo.pedrojoya.pr158.detalle.DetalleActivityStarter;
+import es.iessaladillo.pedrojoya.pr158.selec_asig.SelecAsigActivityStarter;
 import es.iessaladillo.pedrojoya.pr158.utils.SharedTransitionsUtils;
 import io.realm.RealmResults;
 
@@ -124,9 +124,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void navigateToAsignaturasAlumnoActivity() {
-        // TODO
-        Toast.makeText(this, "Ir a asignaturas del alumno", Toast.LENGTH_SHORT).show();
+    public void navigateToAsignaturasAlumnoActivity(String idAlumno) {
+        SelecAsigActivityStarter.start(this, idAlumno);
     }
 
     @Override

@@ -4,10 +4,12 @@ import es.iessaladillo.pedrojoya.pr158.db.entities.Alumno;
 import es.iessaladillo.pedrojoya.pr158.db.entities.Asignatura;
 import es.iessaladillo.pedrojoya.pr158.detalle.DetalleContract;
 import es.iessaladillo.pedrojoya.pr158.main.MainContract;
+import es.iessaladillo.pedrojoya.pr158.selec_asig.SelecAsigContract;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
-public class Repository implements MainContract.Usecase, DetalleContract.Usecase {
+public class Repository implements MainContract.Usecase, DetalleContract.Usecase, SelecAsigContract.Usecase {
 
     private final Realm mRealm;
 
@@ -36,14 +38,15 @@ public class Repository implements MainContract.Usecase, DetalleContract.Usecase
     }
 
     @Override
-    public void saveAlumno(Alumno alumno) {
-
-        mRealm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                realm.copyToRealmOrUpdate(alumno);
-            }
+    public void updateAlumno(Alumno alumno, RealmList<Asignatura> asignaturasSeleccionadas) {
+        mRealm.executeTransaction(realm -> {
+            alumno.setAsignaturas(asignaturasSeleccionadas);
         });
+    }
+
+    @Override
+    public void saveAlumno(Alumno alumno) {
+        mRealm.executeTransaction(realm -> realm.copyToRealmOrUpdate(alumno));
     }
 
     @Override
