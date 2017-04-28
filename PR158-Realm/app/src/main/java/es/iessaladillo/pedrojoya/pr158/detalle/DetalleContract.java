@@ -32,8 +32,6 @@ public interface DetalleContract {
 
         Alumno getAlumno(String idAlumno);
 
-        void saveAlumno(Alumno alumno);
-
         void addAlumno(Alumno alumno);
 
         void updateAlumno(Alumno alumno, String nombre, String direccion, String urlFoto);

@@ -45,11 +45,6 @@ public class Repository implements MainContract.Usecase, DetalleContract.Usecase
     }
 
     @Override
-    public void saveAlumno(Alumno alumno) {
-        mRealm.executeTransaction(realm -> realm.copyToRealmOrUpdate(alumno));
-    }
-
-    @Override
     public void addAlumno(Alumno alumno) {
         mRealm.executeTransaction(realm -> realm.copyToRealmOrUpdate(alumno));
     }
