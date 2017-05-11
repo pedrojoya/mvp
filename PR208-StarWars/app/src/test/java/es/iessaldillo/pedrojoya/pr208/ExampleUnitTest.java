@@ -1,4 +1,4 @@
-package starwars.es.iessaldillo.pedrojoya.starwars;
+package es.iessaldillo.pedrojoya.pr208;
 
 import org.junit.Test;
 

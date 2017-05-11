@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/StarWars.iml" filepath="$PROJECT_DIR$/StarWars.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PR208-StarWars.iml" filepath="$PROJECT_DIR$/PR208-StarWars.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

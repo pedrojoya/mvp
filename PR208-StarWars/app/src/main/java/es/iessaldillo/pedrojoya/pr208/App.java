@@ -1,4 +1,4 @@
-package starwars.es.iessaldillo.pedrojoya.starwars;
+package es.iessaldillo.pedrojoya.pr208;
 
 import android.app.Application;
 
@@ -10,7 +10,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import starwars.es.iessaldillo.pedrojoya.starwars.api.StarWarsApi;
+import es.iessaldillo.pedrojoya.pr208.api.StarWarsApi;
 
 public class App extends Application {
 

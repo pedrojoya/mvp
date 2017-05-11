@@ -1,10 +1,11 @@
-package starwars.es.iessaldillo.pedrojoya.starwars.api;
+package es.iessaldillo.pedrojoya.pr208.api;
 
+import es.iessaldillo.pedrojoya.pr208.api.models.World;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import starwars.es.iessaldillo.pedrojoya.starwars.api.models.Respuesta;
+import es.iessaldillo.pedrojoya.pr208.api.models.Respuesta;
 
 public interface StarWarsApi {
 
@@ -12,6 +13,6 @@ public interface StarWarsApi {
     Observable<Respuesta> buscarPersona(@Query("search") String texto);
 
     @GET("planets/{idPlaneta}")
-    Observable<Respuesta> getPlaneta(@Path("idPlaneta") String idPlaneta);
+    Observable<World> getPlaneta(@Path("idPlaneta") String idPlaneta);
 
 }

@@ -1,5 +1,5 @@
 
-package starwars.es.iessaldillo.pedrojoya.starwars.api.models;
+package es.iessaldillo.pedrojoya.pr208.api.models;
 
 import java.util.List;
 

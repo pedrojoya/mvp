@@ -1,4 +1,4 @@
-package starwars.es.iessaldillo.pedrojoya.starwars;
+package es.iessaldillo.pedrojoya.pr208;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("starwars.es.iessaldillo.pedrojoya.starwars", appContext.getPackageName());
+        assertEquals("es.iessaldillo.pedrojoya.pr208", appContext.getPackageName());
     }
 }
