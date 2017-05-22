@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import
+            type="es.iessaladillo.pedrojoya.pr208.ui.main.MainActivityBindingVariable"/>
+        <import
+            type="es.iessaladillo.pedrojoya.pr208.ui.main.MainActivityViewModel"/>
+
+        <variable
+            name="bv"
+            type="MainActivityBindingVariable"/>
+        <variable
+            name="presenter"
+            type="MainActivityViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="es.iessaladillo.pedrojoya.pr208.ui.main.MainActivity">
+
+        <TextView
+            android:id="@+id/lblContador"
+            style="@style/TextAppearance.AppCompat.Display4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/margen"
+            android:layout_marginLeft="@dimen/margen"
+            android:layout_marginRight="@dimen/margen"
+            android:layout_marginTop="@dimen/margen"
+            android:text="@{String.valueOf(bv.contador)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            tools:text="0"/>
+
+        <Button
+            android:id="@+id/btnIncrementar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblContador"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/margen"
+            android:layout_marginRight="@dimen/margen"
+            android:layout_marginTop="@dimen/margen"
+            android:text="@string/incrementar"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblContador"
+            android:onClick="@{v -> presenter.increment()}"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

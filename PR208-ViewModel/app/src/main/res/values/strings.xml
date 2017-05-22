@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ViewModel</string>
+    <string name="incrementar">Incrementar</string>
+</resources>
