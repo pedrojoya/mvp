@@ -27,6 +27,15 @@ public class Alumno {
         this.id = id;
     }
 
+    @Ignore
+    public Alumno(String id, String nombre, String direccion, String urlFoto, long timestamp) {
+        this.id = id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.urlFoto = urlFoto;
+        this.timestamp = timestamp;
+    }
+
     public Alumno() { }
 
     public String getDireccion() {

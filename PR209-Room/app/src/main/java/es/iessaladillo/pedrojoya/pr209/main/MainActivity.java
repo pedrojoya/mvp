@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr209.main;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -34,10 +35,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @BindView(R.id.fabAccion)
     FloatingActionButton fabAccion;
 
-    private AlumnosAdapter mAdaptador;
-    private LiveData<List<Alumno>> mData;
+    private MainViewModel mViewModel;
     private MainPresenter mPresenter;
 
+    private LiveData<List<Alumno>> mData;
+
+    private AlumnosAdapter mAdaptador;
     private View mFotoView;
 
     @Override
@@ -45,9 +48,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mPresenter = new MainPresenter(this);
-        mData = mPresenter.getDatos();
-        initVistas();
+        configToolbar();
+        configRecyclerView();
+        mViewModel.loadAlumnos().observe(this, new);
     }
 
     private void initVistas() {
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         lstAlumnos.setLayoutManager(
                 new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
-        mAdaptador = new AlumnosAdapter(mData);
+        mAdaptador = new AlumnosAdapter();
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnEmptyStateListener(this);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
