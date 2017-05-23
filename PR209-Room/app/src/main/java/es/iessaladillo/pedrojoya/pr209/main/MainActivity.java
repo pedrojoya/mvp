@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,11 +18,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import es.iessaladillo.pedrojoya.pr209.R;
+import es.iessaladillo.pedrojoya.pr209.base.AppCompatLifecycleActivity;
 import es.iessaladillo.pedrojoya.pr209.db.entities.Alumno;
 import es.iessaladillo.pedrojoya.pr209.detalle.DetalleActivityStarter;
 import es.iessaladillo.pedrojoya.pr209.selec_asig.SelecAsigActivityStarter;
 
-public class MainActivity extends AppCompatActivity implements MainContract.View, AlumnosAdapter
+public class MainActivity extends AppCompatLifecycleActivity implements AlumnosAdapter
         .OnItemClickListener, AlumnosAdapter.OnEmptyStateListener {
 
     @BindView(R.id.toolbar)
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     FloatingActionButton fabAccion;
 
     private MainViewModel mViewModel;
-    private MainPresenter mPresenter;
 
     private LiveData<List<Alumno>> mData;
 
@@ -49,15 +48,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        mPresenter = new MainPresenter(this);
         configToolbar();
         configRecyclerView();
-        mViewModel.loadAlumnos().observe(this, new);
-    }
-
-    private void initVistas() {
-        configToolbar();
-        configRecyclerView();
+        mViewModel.loadAlumnos().observe(this, alumnos -> mAdaptador.setData(alumnos));
     }
 
     private void configToolbar() {
@@ -69,9 +62,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         lstAlumnos.setLayoutManager(
                 new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
-        mAdaptador = new AlumnosAdapter();
-        mAdaptador.setOnItemClickListener(this);
-        mAdaptador.setOnEmptyStateListener(this);
+        mAdaptador = new AlumnosAdapter(this, this);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                         ItemTouchHelper.RIGHT) {
@@ -84,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                        mPresenter.doEliminarAlumno(mData.get(viewHolder.getAdapterPosition()));
+                        mViewModel.deleteAlumno(
+                                mAdaptador.getItem(viewHolder.getAdapterPosition()));
                     }
                 });
         itemTouchHelper.attachToRecyclerView(lstAlumnos);
@@ -93,36 +85,28 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @OnClick(R.id.fabAccion)
     public void agregar() {
-        mPresenter.doAgregar();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        navigateToDetalleActivity();
     }
 
     @Override
     public void onItemClick(View view, Alumno alumno, int position) {
         mFotoView = view.findViewById(R.id.imgFoto);
-        mPresenter.doDetalle(alumno);
+        navigateToDetalleActivity(alumno.getId());
     }
 
     @Override
     public void onItemIconClick(View view, Alumno alumno, int position) {
-        mPresenter.showAsignaturas(alumno);
+        navigateToAsignaturasAlumnoActivity(alumno.getId());
     }
 
-    @Override
     public void navigateToDetalleActivity() {
         DetalleActivityStarter.start(this, getString(R.string.agregar_alumno));
     }
 
-    @Override
     public void navigateToDetalleActivity(String idAlumno) {
         DetalleActivityStarter.start(this, getString(R.string.actualizar_alumno), idAlumno);
     }
 
-    @Override
     public void navigateToAsignaturasAlumnoActivity(String idAlumno) {
         SelecAsigActivityStarter.start(this, idAlumno);
     }

@@ -1,66 +1,24 @@
 package es.iessaladillo.pedrojoya.pr209.repository;
 
+import android.arch.lifecycle.LiveData;
+
+import java.util.List;
+
 import es.iessaladillo.pedrojoya.pr209.db.entities.Alumno;
 import es.iessaladillo.pedrojoya.pr209.db.entities.Asignatura;
-import es.iessaladillo.pedrojoya.pr209.detalle.DetalleContract;
-import es.iessaladillo.pedrojoya.pr209.main.MainContract;
-import es.iessaladillo.pedrojoya.pr209.selec_asig.SelecAsigContract;
-import io.realm.Realm;
-import io.realm.RealmList;
-import io.realm.RealmResults;
+import es.iessaladillo.pedrojoya.pr209.db.entities.SelecAsigTuple;
 
-public class Repository implements MainContract.Usecase, DetalleContract.Usecase, SelecAsigContract.Usecase {
+public interface Repository {
 
-    private final Realm mRealm;
+    LiveData<List<Alumno>> getAlumnos();
+    void deleteAlumno(Alumno alumno);
 
-    public Repository() {
-        mRealm = Realm.getDefaultInstance();
-    }
+    LiveData<List<Asignatura>> getAsignaturas();
 
-    @Override
-    public RealmResults<Alumno> getAlumnos() {
-        return mRealm.where(Alumno.class).findAllSortedAsync("nombre");
-    }
+    LiveData<Alumno> getAlumno(String idAlumno);
+    void updateAlumno(Alumno alumno);
+    void insertAlumno(Alumno alumno);
 
-    @Override
-    public void onDestroy() {
-        mRealm.close();
-    }
-
-    @Override
-    public RealmResults<Asignatura> getAsignaturas() {
-        return mRealm.where(Asignatura.class).findAllSorted("nombre");
-    }
-
-    @Override
-    public Alumno getAlumno(String idAlumno) {
-        return mRealm.where(Alumno.class).equalTo("id", idAlumno).findFirst();
-    }
-
-    @Override
-    public void updateAlumno(Alumno alumno, RealmList<Asignatura> asignaturasSeleccionadas) {
-        mRealm.executeTransaction(realm -> {
-            alumno.setAsignaturas(asignaturasSeleccionadas);
-        });
-    }
-
-    @Override
-    public void addAlumno(Alumno alumno) {
-        mRealm.executeTransaction(realm -> realm.copyToRealmOrUpdate(alumno));
-    }
-
-    @Override
-    public void updateAlumno(Alumno alumno, String nombre, String direccion, String urlFoto) {
-        mRealm.executeTransaction(realm -> {
-            alumno.setNombre(nombre);
-            alumno.setDireccion(direccion);
-            alumno.setUrlFoto(urlFoto);
-        });
-    }
-
-    @Override
-    public void eliminarAlumno(final Alumno alumno) {
-        mRealm.executeTransaction(realm -> alumno.deleteFromRealm());
-    }
-
+    LiveData<List<SelecAsigTuple>> getSelecAsigTuples(String idAlumno);
+    void saveSelecAsigTuples(String idAlumno, List<SelecAsigTuple> selecAsigTuples);
 }

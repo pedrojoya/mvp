@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
@@ -18,15 +19,15 @@ public interface AsignaturaDao {
     LiveData<List<Asignatura>> getAsignaturas();
 
     @Query("SELECT * FROM Asignatura WHERE id = :asignaturaId")
-    Asignatura getAsignatura(String asignaturaId);
+    LiveData<Asignatura> getAsignatura(String asignaturaId);
 
-    @Insert
-    void insert(Asignatura asignatura);
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    long insert(Asignatura asignatura);
 
     @Update
-    void update(Asignatura asignatura);
+    int update(Asignatura asignatura);
 
     @Delete
-    void delete(Asignatura asignatura);
+    int delete(Asignatura asignatura);
 
 }

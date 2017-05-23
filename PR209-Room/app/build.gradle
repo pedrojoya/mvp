@@ -51,4 +51,5 @@ dependencies {
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
     compile "android.arch.persistence.room:runtime:$rootProject.ext.arch_version"
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.ext.arch_version"
+    compile 'com.facebook.stetho:stetho:1.5.0'
 }

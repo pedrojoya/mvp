@@ -18,8 +18,8 @@ public interface AlumnoDao {
     @Query("SELECT * FROM Alumno")
     LiveData<List<Alumno>> getAlumnos();
 
-    @Query("SELECT * FROM Alumno WHERE id = :alumnoId")
-    Alumno getAlumno(String alumnoId);
+    @Query("SELECT * FROM Alumno WHERE id = :alumnoId ORDER BY nombre")
+    LiveData<Alumno> getAlumno(String alumnoId);
 
     @Query("SELECT Asignatura.id, Asignatura.nombre FROM AsignaturaAlumno "
             + "INNER JOIN Asignatura ON AsignaturaAlumno.asigId = Asignatura.id "
@@ -28,12 +28,12 @@ public interface AlumnoDao {
     LiveData<List<Asignatura>> getAsignaturasAlumno(String alumnoId);
 
     @Insert
-    void insert(Alumno alumno);
+    long insert(Alumno alumno);
 
     @Update
-    void update(Alumno alumno);
+    int update(Alumno alumno);
 
     @Delete
-    void delete(Alumno alumno);
+    int delete(Alumno alumno);
 
 }

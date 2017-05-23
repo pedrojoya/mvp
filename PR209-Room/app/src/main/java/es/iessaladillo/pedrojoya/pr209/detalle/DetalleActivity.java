@@ -1,11 +1,11 @@
 package es.iessaladillo.pedrojoya.pr209.detalle;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -28,11 +27,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import es.iessaladillo.pedrojoya.pr209.R;
+import es.iessaladillo.pedrojoya.pr209.base.AppCompatLifecycleActivity;
 import es.iessaladillo.pedrojoya.pr209.db.entities.Alumno;
 
 
 @SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
-public class DetalleActivity extends AppCompatActivity implements DetalleContract.View {
+public class DetalleActivity extends AppCompatLifecycleActivity {
 
     @BindView(R.id.imgFoto)
     ImageView imgFoto;
@@ -56,9 +56,8 @@ public class DetalleActivity extends AppCompatActivity implements DetalleContrac
     @Optional
     String urlFoto;
 
-    private DetallePresenter mPresenter;
+    private DetalleViewModel mViewModel;
     private Random mAleatorio;
-    private Alumno mAlumno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +65,12 @@ public class DetalleActivity extends AppCompatActivity implements DetalleContrac
         setContentView(R.layout.activity_detalle);
         ButterKnife.bind(this);
         ActivityStarter.fill(this, savedInstanceState);
-        mPresenter = new DetallePresenter(this);
         mAleatorio = new Random();
+        mViewModel = ViewModelProviders.of(this).get(DetalleViewModel.class);
         initVistas();
-        mPresenter.loadAlumno(idAlumno);
+        if (idAlumno != null) {
+            mViewModel.loadAlumno(idAlumno).observe(this, alumno -> showAlumno(alumno));
+        }
     }
 
     private void initVistas() {
@@ -107,16 +108,16 @@ public class DetalleActivity extends AppCompatActivity implements DetalleContrac
     public void guardar() {
         if (!TextUtils.isEmpty(txtNombre.getText().toString()) && !TextUtils.isEmpty(
                 txtDireccion.getText().toString())) {
-            mPresenter.doGuardar(idAlumno, mAlumno, txtNombre.getText().toString(),
-                    txtDireccion.getText().toString(), urlFoto);
+            if (idAlumno == null) {
+                mViewModel.insertAlumno(
+                        new Alumno(UUID.randomUUID().toString(), txtNombre.getText().toString(),
+                                txtDireccion.getText().toString(), urlFoto));
+            } else {
+                mViewModel.updateAlumno(new Alumno(idAlumno, txtNombre.getText().toString(),
+                        txtDireccion.getText().toString(), urlFoto));
+            }
             finish();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mPresenter.onDestroy();
     }
 
     @Override
@@ -136,9 +137,7 @@ public class DetalleActivity extends AppCompatActivity implements DetalleContrac
                 R.drawable.placeholder).fit().noFade().centerCrop().into(imgFoto);
     }
 
-    @Override
     public void showAlumno(Alumno alumno) {
-        mAlumno = alumno;
         urlFoto = alumno.getUrlFoto();
         alumnoToVistas(alumno);
     }
@@ -147,21 +146,6 @@ public class DetalleActivity extends AppCompatActivity implements DetalleContrac
         txtNombre.setText(alumno.getNombre());
         txtDireccion.setText(alumno.getDireccion());
         mostrarFoto(alumno.getUrlFoto());
-    }
-
-    @Override
-    public void showNewAlumno() {
-        mAlumno = new Alumno(UUID.randomUUID().toString());
-        if (TextUtils.isEmpty(urlFoto)) {
-            urlFoto = generateRandomFoto();
-        }
-        mostrarFoto(urlFoto);
-    }
-
-    @Override
-    public void navigateToAsignaturasAlumnoActivity(String idAlumno) {
-        // TODO.
-        Toast.makeText(this, "Ir a selección de asignaturas", Toast.LENGTH_SHORT).show();
     }
 
     private String generateRandomFoto() {

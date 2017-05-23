@@ -11,9 +11,9 @@ public class MigrationFrom0To1 extends Migration {
 
     @Override
     public void migrate(SupportSQLiteDatabase database) {
-        database.execSQL("INSERT INTO ASIGNATURA VALUES('PMDMO', 'Android'");
-        database.execSQL("INSERT INTO ASIGNATURA VALUES('PSPRO', 'Multihilo'");
-        database.execSQL("INSERT INTO ASIGNATURA VALUES('HLC', 'Horas de libre configuración'");
+        database.execSQL("INSERT INTO Asignatura VALUES('PMDMO', 'Android'");
+        database.execSQL("INSERT INTO Asignatura VALUES('PSPRO', 'Multihilo'");
+        database.execSQL("INSERT INTO Asignatura VALUES('HLC', 'Horas de libre configuración'");
     }
 
 }

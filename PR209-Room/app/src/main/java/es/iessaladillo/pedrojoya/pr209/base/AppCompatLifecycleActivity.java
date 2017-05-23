@@ -4,7 +4,7 @@ import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.support.v7.app.AppCompatActivity;
 
-public class BaseLifecycleActivity extends AppCompatActivity implements LifecycleRegistryOwner {
+public class AppCompatLifecycleActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
     private LifecycleRegistry mRegistry = new LifecycleRegistry(this);
 

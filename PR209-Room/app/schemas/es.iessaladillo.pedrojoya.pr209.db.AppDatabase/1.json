@@ -1,0 +1,136 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "affc6d2be70c5f836a7ff84c0fee9cff",
+    "entities": [
+      {
+        "tableName": "Alumno",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT, `nombre` TEXT, `direccion` TEXT, `urlFoto` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "direccion",
+            "columnName": "direccion",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "urlFoto",
+            "columnName": "urlFoto",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Asignatura",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT, `nombre` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "AsignaturaAlumno",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`alumId` TEXT, `asigId` TEXT, PRIMARY KEY(`alumId`, `asigId`), FOREIGN KEY(`alumId`) REFERENCES `Alumno`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`asigId`) REFERENCES `Asignatura`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "alumId",
+            "columnName": "alumId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "asigId",
+            "columnName": "asigId",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "alumId",
+            "asigId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_AsignaturaAlumno_alumId",
+            "unique": false,
+            "columnNames": [
+              "alumId"
+            ],
+            "createSql": "CREATE  INDEX `index_AsignaturaAlumno_alumId`\nON `${TABLE_NAME}` (`alumId`)"
+          },
+          {
+            "name": "index_AsignaturaAlumno_asigId",
+            "unique": false,
+            "columnNames": [
+              "asigId"
+            ],
+            "createSql": "CREATE  INDEX `index_AsignaturaAlumno_asigId`\nON `${TABLE_NAME}` (`asigId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Alumno",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "alumId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "Asignatura",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "asigId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"affc6d2be70c5f836a7ff84c0fee9cff\")"
+    ]
+  }
+}

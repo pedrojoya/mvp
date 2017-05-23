@@ -12,7 +12,6 @@ public class Alumno {
     private String nombre;
     private String direccion;
     private String urlFoto;
-    private long timestamp;
 
     @Ignore
     public Alumno(Alumno alumno) {
@@ -28,12 +27,11 @@ public class Alumno {
     }
 
     @Ignore
-    public Alumno(String id, String nombre, String direccion, String urlFoto, long timestamp) {
+    public Alumno(String id, String nombre, String direccion, String urlFoto) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.urlFoto = urlFoto;
-        this.timestamp = timestamp;
     }
 
     public Alumno() { }
@@ -68,14 +66,6 @@ public class Alumno {
 
     public void setUrlFoto(String urlFoto) {
         this.urlFoto = urlFoto;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
     }
 
 }
