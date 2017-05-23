@@ -10,7 +10,7 @@ import es.iessaladillo.pedrojoya.pr209.db.entities.SelecAsigTuple;
 
 public class SelecAsigAdapter extends ArrayAdapter<SelecAsigTuple> {
 
-    private List<SelecAsigTuple> mData;
+    private final List<SelecAsigTuple> mData;
 
     public SelecAsigAdapter(@NonNull Context context, List<SelecAsigTuple> data) {
         super(context, android.R.layout.simple_list_item_multiple_choice, data);

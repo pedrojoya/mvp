@@ -5,25 +5,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.Collections;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 import es.iessaladillo.pedrojoya.pr209.R;
+import es.iessaladillo.pedrojoya.pr209.databinding.ActivityMainItemBinding;
 import es.iessaladillo.pedrojoya.pr209.db.entities.Alumno;
 
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
     private List<Alumno> mDatos = Collections.emptyList();
-    private OnItemClickListener onItemClickListener;
-    private OnEmptyStateListener onEmptyStateListener;
+    private final OnItemClickListener onItemClickListener;
+    private final OnEmptyStateListener onEmptyStateListener;
 
     public AlumnosAdapter(OnItemClickListener onItemClickListener,
             OnEmptyStateListener onEmptyStateListener) {
@@ -33,8 +29,9 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false));
+        ActivityMainItemBinding itemBinding = ActivityMainItemBinding.inflate(
+                LayoutInflater.from(parent.getContext()), parent, false);
+        return new ViewHolder(itemBinding);
     }
 
     @Override
@@ -59,39 +56,29 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        // El contenedor de vistas para un elemento de la lista debe contener...
-        @BindView(R.id.lblNombre)
-        public TextView lblNombre;
-        @BindView(R.id.lblDireccion)
-        public TextView lblDireccion;
-        @BindView(R.id.imgFoto)
-        public CircleImageView imgAvatar;
-        @BindView(R.id.imgAsignaturas)
-        public ImageView imgAsignaturas;
+        private final ActivityMainItemBinding binding;
 
-        // El constructor recibe la vista-fila.
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
+        public ViewHolder(ActivityMainItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
-        // Escribe el alumno en las vistas.
         public void bind(Alumno alumno) {
-            // Se escriben los mDatos en la vista.
-            lblNombre.setText(alumno.getNombre());
-            lblDireccion.setText(alumno.getDireccion());
-            String url = alumno.getUrlFoto();
-            Picasso.with(imgAvatar.getContext()).load(url).placeholder(R.drawable.ic_user).error(
-                    R.drawable.ic_user).into(imgAvatar);
+            binding.setAlumno(alumno);
+            // TODO Hacerlo con Data Binding.
+            Picasso.with(binding.imgFoto.getContext()).load(alumno.getUrlFoto()).placeholder(
+                    R.drawable.ic_user).error(R.drawable.ic_user).into(binding.imgFoto);
+            // FIN TODO
             itemView.setOnClickListener(v -> {
                 if (onItemClickListener != null) {
                     onItemClickListener.onItemClick(v, mDatos.get(getAdapterPosition()),
                             getAdapterPosition());
                 }
             });
-            imgAsignaturas.setOnClickListener(
+            binding.imgAsignaturas.setOnClickListener(
                     v -> onItemClickListener.onItemIconClick(v, mDatos.get(getAdapterPosition()),
                             getAdapterPosition()));
+            binding.executePendingBindings();
         }
 
     }

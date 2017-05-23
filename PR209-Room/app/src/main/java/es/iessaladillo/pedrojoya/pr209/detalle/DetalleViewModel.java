@@ -10,7 +10,7 @@ import es.iessaladillo.pedrojoya.pr209.repository.Repository;
 
 public class DetalleViewModel extends AndroidViewModel {
 
-    private Repository mRepository;
+    private final Repository mRepository;
     private LiveData<Alumno> mAlumno;
 
     public DetalleViewModel(Application application) {

@@ -12,8 +12,8 @@ import es.iessaladillo.pedrojoya.pr209.repository.Repository;
 
 public class MainViewModel extends AndroidViewModel {
 
-    private Repository mRepository;
-    private LiveData<List<Alumno>> mAlumnos;
+    private final Repository mRepository;
+    private final LiveData<List<Alumno>> mAlumnos;
 
     public MainViewModel(Application application) {
         super(application);

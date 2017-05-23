@@ -10,7 +10,7 @@ import es.iessaladillo.pedrojoya.pr209.db.entities.Alumno;
 import es.iessaladillo.pedrojoya.pr209.db.entities.Asignatura;
 import es.iessaladillo.pedrojoya.pr209.db.entities.AsignaturaAlumno;
 
-@Database(entities = {Alumno.class, Asignatura.class, AsignaturaAlumno.class}, version = 1,
+@Database(entities = {Alumno.class, Asignatura.class, AsignaturaAlumno.class}, version = 2,
         exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract AlumnoDao alumnoDao();

@@ -45,10 +45,12 @@ public class SelecAsigActivity extends AppCompatLifecycleActivity {
         initVistas();
         mViewModel.loadSelecAsigTuples(idAlumno).observe(this, selecAsigTuples -> {
             mAdaptador.clear();
-            mAdaptador.addAll(selecAsigTuples);
-            for (int i = 0; i < selecAsigTuples.size(); i++) {
-                if (selecAsigTuples.get(i).alumId != null) {
-                    lstAsignaturas.setItemChecked(i, true);
+            if (selecAsigTuples != null) {
+                mAdaptador.addAll(selecAsigTuples);
+                for (int i = 0; i < selecAsigTuples.size(); i++) {
+                    if (selecAsigTuples.get(i).alumId != null) {
+                        lstAsignaturas.setItemChecked(i, true);
+                    }
                 }
             }
         });
@@ -57,7 +59,7 @@ public class SelecAsigActivity extends AppCompatLifecycleActivity {
     private void initVistas() {
         lstAsignaturas.setEmptyView(lblEmptyView);
         lstAsignaturas.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
-        mAdaptador = new ArrayAdapter<SelecAsigTuple>(this, android.R.layout
+        mAdaptador = new ArrayAdapter<>(this, android.R.layout
                 .simple_list_item_multiple_choice, new ArrayList<>());
         lstAsignaturas.setAdapter(mAdaptador);
     }

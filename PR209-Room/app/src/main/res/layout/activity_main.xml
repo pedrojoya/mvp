@@ -1,51 +1,65 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
+    <data>
+        <import
+            type="es.iessaladillo.pedrojoya.pr209.main.MainActivity"/>
+
+        <variable
+            name="presenter"
+            type="MainActivity"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    </android.support.design.widget.AppBarLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/lstAlumnos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fadeScrollbars="false"
-        android:paddingBottom="@dimen/lst_padding"
-        android:paddingTop="@dimen/lst_padding"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/lblNoHayAlumnos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:drawablePadding="@dimen/empty_drawablePadding"
-        android:drawableTop="@drawable/ic_no_hay_alumnos"
-        android:text="@string/no_hay_alumnos"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/lstAlumnos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:paddingBottom="@dimen/lst_padding"
+            android:paddingTop="@dimen/lst_padding"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabAccion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/fab_marginBottom"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:src="@drawable/ic_action_add" />
+        <TextView
+            android:id="@+id/lblNoHayAlumnos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/empty_drawablePadding"
+            android:drawableTop="@drawable/ic_no_hay_alumnos"
+            android:text="@string/no_hay_alumnos"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-</android.support.design.widget.CoordinatorLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabAccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="@dimen/fab_marginBottom"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:src="@drawable/ic_action_add"
+            android:onClick="@{v -> presenter.navigateToDetalleActivity()}"/>/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

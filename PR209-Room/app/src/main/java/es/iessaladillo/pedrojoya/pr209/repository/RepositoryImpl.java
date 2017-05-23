@@ -12,7 +12,7 @@ import es.iessaladillo.pedrojoya.pr209.db.entities.SelecAsigTuple;
 
 public class RepositoryImpl implements Repository {
 
-    private AppDatabase db;
+    private final AppDatabase db;
 
     public RepositoryImpl(AppDatabase db) {
         this.db = db;

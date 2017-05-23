@@ -12,7 +12,7 @@ import es.iessaladillo.pedrojoya.pr209.repository.Repository;
 
 public class SelecAsigViewModel extends AndroidViewModel {
 
-    private Repository mRepository;
+    private final Repository mRepository;
     private LiveData<List<SelecAsigTuple>> mSelecAsigTuples;
 
     public SelecAsigViewModel(Application application) {

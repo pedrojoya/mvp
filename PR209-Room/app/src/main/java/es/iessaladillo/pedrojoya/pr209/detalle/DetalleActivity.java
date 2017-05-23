@@ -69,7 +69,7 @@ public class DetalleActivity extends AppCompatLifecycleActivity {
         mViewModel = ViewModelProviders.of(this).get(DetalleViewModel.class);
         initVistas();
         if (idAlumno != null) {
-            mViewModel.loadAlumno(idAlumno).observe(this, alumno -> showAlumno(alumno));
+            mViewModel.loadAlumno(idAlumno).observe(this, this::showAlumno);
         }
     }
 
