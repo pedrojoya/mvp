@@ -38,8 +38,7 @@ public class App extends Application {
             db.asignaturaDao().insert(new Asignatura("PSPRO", "Multihilo"));
             db.asignaturaDao().insert(new Asignatura("HLC", "Horas de Libre Configuración"));
             db.setTransactionSuccessful();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
     }

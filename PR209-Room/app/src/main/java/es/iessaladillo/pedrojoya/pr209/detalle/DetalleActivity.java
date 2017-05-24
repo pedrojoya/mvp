@@ -1,20 +1,13 @@
 package es.iessaladillo.pedrojoya.pr209.detalle;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.Random;
 import java.util.UUID;
@@ -22,30 +15,17 @@ import java.util.UUID;
 import activitystarter.ActivityStarter;
 import activitystarter.Arg;
 import activitystarter.Optional;
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import es.iessaladillo.pedrojoya.pr209.R;
 import es.iessaladillo.pedrojoya.pr209.base.AppCompatLifecycleActivity;
+import es.iessaladillo.pedrojoya.pr209.databinding.ActivityDetalleBinding;
 import es.iessaladillo.pedrojoya.pr209.db.entities.Alumno;
 
+import static es.iessaladillo.pedrojoya.pr209.R.id.txtDireccion;
 
 @SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class DetalleActivity extends AppCompatLifecycleActivity {
-
-    @BindView(R.id.imgFoto)
-    ImageView imgFoto;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.collapsingToolbarLayout)
-    CollapsingToolbarLayout collapsingToolbarLayout;
-    @BindView(R.id.txtNombre)
-    TextInputEditText txtNombre;
-    @BindView(R.id.txtDireccion)
-    TextInputEditText txtDireccion;
-    @BindView(R.id.fabAccion)
-    FloatingActionButton fabAccion;
 
     @Arg
     String title;
@@ -57,16 +37,21 @@ public class DetalleActivity extends AppCompatLifecycleActivity {
     String urlFoto;
 
     private DetalleViewModel mViewModel;
+    private ActivityDetalleBinding mBinding;
+    private DetalleBindingModel mBindingModel;
     private Random mAleatorio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle);
+        mViewModel = ViewModelProviders.of(this).get(DetalleViewModel.class);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_detalle);
+        mBinding.setPresenter(this);
+        mBindingModel = new DetalleBindingModel();
+        mBinding.setBindingModel(mBindingModel);
         ButterKnife.bind(this);
         ActivityStarter.fill(this, savedInstanceState);
         mAleatorio = new Random();
-        mViewModel = ViewModelProviders.of(this).get(DetalleViewModel.class);
         initVistas();
         if (idAlumno != null) {
             mViewModel.loadAlumno(idAlumno).observe(this, this::showAlumno);
@@ -78,24 +63,23 @@ public class DetalleActivity extends AppCompatLifecycleActivity {
         configToolbar();
     }
 
-    @OnClick(R.id.imgFoto)
-    public void cambiarFoto(View view) {
-        urlFoto = generateRandomFoto();
-        mostrarFoto(urlFoto);
-    }
-
     private void configToolbar() {
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mBinding.toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        collapsingToolbarLayout.setExpandedTitleColor(
+        mBinding.collapsingToolbarLayout.setExpandedTitleColor(
                 ContextCompat.getColor(this, android.R.color.transparent));
-        collapsingToolbarLayout.setCollapsedTitleTextColor(
+        mBinding.collapsingToolbarLayout.setCollapsedTitleTextColor(
                 ContextCompat.getColor(this, android.R.color.white));
     }
 
-    @OnEditorAction(R.id.txtDireccion)
+    public void cambiarFoto() {
+        urlFoto = generateRandomFoto();
+        mBindingModel.setUrlFoto(urlFoto);
+    }
+
+    @OnEditorAction(txtDireccion)
     public boolean onDatosIntroducidos(TextView textView, int actionId, KeyEvent keyEvent) {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
             guardar();
@@ -104,17 +88,16 @@ public class DetalleActivity extends AppCompatLifecycleActivity {
         return false;
     }
 
-    @OnClick(R.id.fabAccion)
     public void guardar() {
-        if (!TextUtils.isEmpty(txtNombre.getText().toString()) && !TextUtils.isEmpty(
-                txtDireccion.getText().toString())) {
+        if (!TextUtils.isEmpty(mBindingModel.getNombre()) && !TextUtils.isEmpty(
+                mBindingModel.getDireccion())) {
             if (idAlumno == null) {
                 mViewModel.insertAlumno(
-                        new Alumno(UUID.randomUUID().toString(), txtNombre.getText().toString(),
-                                txtDireccion.getText().toString(), urlFoto));
+                        new Alumno(UUID.randomUUID().toString(), mBindingModel.getNombre(),
+                                mBindingModel.getDireccion(), urlFoto));
             } else {
-                mViewModel.updateAlumno(new Alumno(idAlumno, txtNombre.getText().toString(),
-                        txtDireccion.getText().toString(), urlFoto));
+                mViewModel.updateAlumno(new Alumno(idAlumno, mBindingModel.getNombre(),
+                        mBindingModel.getDireccion(), urlFoto));
             }
             finish();
         }
@@ -132,20 +115,11 @@ public class DetalleActivity extends AppCompatLifecycleActivity {
         return true;
     }
 
-    private void mostrarFoto(String urlFoto) {
-        Picasso.with(this).load(urlFoto).placeholder(R.drawable.placeholder).error(
-                R.drawable.placeholder).fit().noFade().centerCrop().into(imgFoto);
-    }
-
     public void showAlumno(Alumno alumno) {
         urlFoto = alumno.getUrlFoto();
-        alumnoToVistas(alumno);
-    }
-
-    private void alumnoToVistas(Alumno alumno) {
-        txtNombre.setText(alumno.getNombre());
-        txtDireccion.setText(alumno.getDireccion());
-        mostrarFoto(alumno.getUrlFoto());
+        mBindingModel.setNombre(alumno.getNombre());
+        mBindingModel.setDireccion(alumno.getDireccion());
+        mBindingModel.setUrlFoto(alumno.getUrlFoto());
     }
 
     private String generateRandomFoto() {

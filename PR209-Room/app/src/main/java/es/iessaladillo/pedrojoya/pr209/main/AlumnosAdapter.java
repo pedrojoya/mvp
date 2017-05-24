@@ -6,12 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.Collections;
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr209.R;
 import es.iessaladillo.pedrojoya.pr209.databinding.ActivityMainItemBinding;
 import es.iessaladillo.pedrojoya.pr209.db.entities.Alumno;
 
@@ -65,10 +62,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
         public void bind(Alumno alumno) {
             binding.setAlumno(alumno);
-            // TODO Hacerlo con Data Binding.
-            Picasso.with(binding.imgFoto.getContext()).load(alumno.getUrlFoto()).placeholder(
-                    R.drawable.ic_user).error(R.drawable.ic_user).into(binding.imgFoto);
-            // FIN TODO
             itemView.setOnClickListener(v -> {
                 if (onItemClickListener != null) {
                     onItemClickListener.onItemClick(v, mDatos.get(getAdapterPosition()),

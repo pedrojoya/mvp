@@ -20,16 +20,13 @@ public interface AsignaturaAlumnoDao {
     @Query("DELETE FROM AsignaturaAlumno WHERE alumId = :alumnoId")
     int deleteAsignaturasAlumno(String alumnoId);
 
-    @Query("SELECT id, nombre, alumId " +
-            "FROM Asignatura INNER JOIN AsignaturaAlumno " +
-            "ON Asignatura.id = AsignaturaAlumno.asigId " +
-            "WHERE AsignaturaAlumno.alumId = :alumnoId " +
-            "UNION " +
-            "SELECT id, nombre, null AS alumId " +
-            "FROM Asignatura " +
-            "WHERE Asignatura.id NOT IN (" +
-            "SELECT asigId FROM AsignaturaAlumno " +
-            "WHERE alumId = :alumnoId)")
+    @Query("SELECT id, nombre, alumId "
+            + "FROM Asignatura INNER JOIN AsignaturaAlumno "
+            + "ON Asignatura.id = AsignaturaAlumno.asigId "
+            + "WHERE AsignaturaAlumno.alumId = :alumnoId " + "UNION "
+            + "SELECT id, nombre, null AS alumId " + "FROM Asignatura "
+            + "WHERE Asignatura.id NOT IN (" + "SELECT asigId FROM AsignaturaAlumno "
+            + "WHERE alumId = :alumnoId)")
     LiveData<List<SelecAsigTuple>> getSelecAsigTuples(String alumnoId);
 
 }

@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.pr209.main;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -9,8 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-
-import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr209.R;
 import es.iessaladillo.pedrojoya.pr209.base.AppCompatLifecycleActivity;
@@ -23,8 +20,6 @@ public class MainActivity extends AppCompatLifecycleActivity implements AlumnosA
         .OnItemClickListener, AlumnosAdapter.OnEmptyStateListener {
 
     private MainViewModel mViewModel;
-
-    private LiveData<List<Alumno>> mData;
 
     private AlumnosAdapter mAdaptador;
     private ActivityMainBinding mBinding;

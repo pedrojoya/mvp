@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -30,7 +31,10 @@
             android:layout_marginStart="@dimen/two_line_avatar_marginLeft"
             android:layout_marginTop="@dimen/two_line_avatar_marginTop"
             android:contentDescription="@string/avatar"
-            android:src="@drawable/ic_user"/>
+            tools:src="@drawable/ic_user"
+            app:imageUrl="@{alumno.urlFoto}"
+            app:placeholder="@{@drawable/ic_user}"
+            app:error="@{@drawable/ic_user}" />
 
         <TextView
             android:id="@+id/lblNombre"

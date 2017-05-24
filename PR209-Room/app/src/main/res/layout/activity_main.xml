@@ -58,7 +58,7 @@
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginRight="@dimen/fab_margin"
             android:src="@drawable/ic_action_add"
-            android:onClick="@{v -> presenter.navigateToDetalleActivity()}"/>/>
+            android:onClick="@{v -> presenter.navigateToDetalleActivity()}"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
