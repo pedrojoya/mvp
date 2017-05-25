@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatLifecycleActivity implements AlumnosA
         configRecyclerView();
         mViewModel.loadAlumnos().observe(this, alumnos -> {
             if (alumnos != null) {
-                // TODO Hacerlo con DiffUtil.
                 mAdaptador.setData(alumnos);
             }
         });

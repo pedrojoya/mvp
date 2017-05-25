@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr209.databinding.ActivityMainItemBinding;
@@ -14,7 +14,7 @@ import es.iessaladillo.pedrojoya.pr209.db.entities.Alumno;
 
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
-    private List<Alumno> mDatos = Collections.emptyList();
+    private List<Alumno> mDatos = new ArrayList<>();
     private final OnItemClickListener onItemClickListener;
     private final OnEmptyStateListener onEmptyStateListener;
 
