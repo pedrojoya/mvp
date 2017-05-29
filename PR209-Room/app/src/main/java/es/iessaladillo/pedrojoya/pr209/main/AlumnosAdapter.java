@@ -61,7 +61,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         }
 
         public void bind(Alumno alumno) {
-            binding.setAlumno(alumno);
+            binding.setBm(alumno);
             itemView.setOnClickListener(v -> {
                 if (onItemClickListener != null) {
                     onItemClickListener.onItemClick(v, mDatos.get(getAdapterPosition()),

@@ -11,7 +11,7 @@ import es.iessaladillo.pedrojoya.pr209.repository.Repository;
 public class DetalleViewModel extends AndroidViewModel {
 
     private final Repository mRepository;
-    private LiveData<Alumno> mAlumno;
+    private LiveData<Alumno> mAlumnoLiveData;
 
     public DetalleViewModel(Application application) {
         super(application);
@@ -19,10 +19,10 @@ public class DetalleViewModel extends AndroidViewModel {
     }
 
     public LiveData<Alumno> loadAlumno(String idAlumno) {
-        if (mAlumno == null) {
-            mAlumno = mRepository.getAlumno(idAlumno);
+        if (mAlumnoLiveData == null) {
+            mAlumnoLiveData = mRepository.getAlumno(idAlumno);
         }
-        return mAlumno;
+        return mAlumnoLiveData;
     }
 
     public void insertAlumno(Alumno alumno) {

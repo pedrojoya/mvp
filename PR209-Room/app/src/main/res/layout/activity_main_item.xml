@@ -9,7 +9,7 @@
             type="es.iessaladillo.pedrojoya.pr209.db.entities.Alumno"/>
 
         <variable
-            name="alumno"
+            name="bm"
             type="Alumno"/>
     </data>
 
@@ -32,7 +32,7 @@
             android:layout_marginTop="@dimen/two_line_avatar_marginTop"
             android:contentDescription="@string/avatar"
             tools:src="@drawable/ic_user"
-            app:imageUrl="@{alumno.urlFoto}"
+            app:imageUrl="@{bm.urlFoto}"
             app:placeholder="@{@drawable/ic_user}"
             app:error="@{@drawable/ic_user}" />
 
@@ -51,7 +51,7 @@
             android:paddingRight="@dimen/two_line_text_paddingLeft"
             android:paddingStart="@dimen/two_line_text_paddingLeft"
             android:paddingTop="@dimen/two_line_text_paddingTop"
-            android:text="@{alumno.nombre}"
+            android:text="@{bm.nombre}"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
 
         <TextView
@@ -69,7 +69,7 @@
             android:paddingLeft="@dimen/two_line_text_paddingLeft"
             android:paddingRight="@dimen/two_line_text_paddingLeft"
             android:paddingStart="@dimen/two_line_text_paddingLeft"
-            android:text="@{alumno.direccion}"
+            android:text="@{bm.direccion}"
             android:textSize="14sp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
